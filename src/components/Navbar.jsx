@@ -22,14 +22,14 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center">
           <span className="text-2xl font-bold text-indigo-700 flex items-center">
-            <span className="text-indigo-500 text-3xl mr-2">✿</span> Amity
+            <span className="text-indigo-500 text-3xl mr-2">✿</span> Jobs
           </span>
         </div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-6">
-          <NavLink to="/about" className={getNavLinkClass}>
-            About
+          <NavLink to="/" className={getNavLinkClass}>
+            Home
           </NavLink>
           <NavLink to="/solutions" className={getNavLinkClass}>
             Solutions
