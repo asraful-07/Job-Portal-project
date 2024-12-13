@@ -31,11 +31,11 @@ const Navbar = () => {
           <NavLink to="/" className={getNavLinkClass}>
             Home
           </NavLink>
-          <NavLink to="/solutions" className={getNavLinkClass}>
-            Solutions
+          <NavLink to="/hot-jobs" className={getNavLinkClass}>
+            HotJobs
           </NavLink>
-          <NavLink to="/causes" className={getNavLinkClass}>
-            Causes
+          <NavLink to="/my-apply" className={getNavLinkClass}>
+            MyApply
           </NavLink>
           <NavLink to="/faq" className={getNavLinkClass}>
             FAQ

@@ -33,11 +33,28 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  const manageProfile = (name, image) => {
-    return updateProfile(auth.currentUser, {
-      displayName: name,
-      photoURL: image,
-    });
+  const manageProfile = async (name, image) => {
+    setLoading(true);
+    try {
+      if (auth.currentUser) {
+        await updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: image,
+        });
+
+        // Immediately update the user state
+        setUser((prevUser) => ({
+          ...prevUser,
+          displayName: name,
+          photoURL: image,
+        }));
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handelLogout = () => {
