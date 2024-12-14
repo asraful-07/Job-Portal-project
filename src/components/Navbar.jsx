@@ -37,11 +37,11 @@ const Navbar = () => {
           <NavLink to="/my-apply" className={getNavLinkClass}>
             MyApply
           </NavLink>
-          <NavLink to="/faq" className={getNavLinkClass}>
-            FAQ
+          <NavLink to="/add-job" className={getNavLinkClass}>
+            AddJob
           </NavLink>
-          <NavLink to="/news" className={getNavLinkClass}>
-            News
+          <NavLink to="/myPostedJobs" className={getNavLinkClass}>
+            MyPostedJobs
           </NavLink>
           <NavLink to="/contact" className={getNavLinkClass}>
             Contact

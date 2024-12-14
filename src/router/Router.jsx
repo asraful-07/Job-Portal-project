@@ -6,10 +6,10 @@ import Login from "../pages/Login";
 import HotJobs from "../pages/HotJobs";
 import JobDetails from "../components/JobDetails";
 import PrivetRouter from "../privetRouter/PrivetRouter";
-import { p } from "motion/react-client";
 import JobApply from "../components/JobApply";
 import MyApply from "../components/MyApply";
 import AddJob from "../pages/AddJob";
+import MyJobs from "../pages/MyJobs";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +53,10 @@ const router = createBrowserRouter([
             <AddJob />
           </PrivetRouter>
         ),
+      },
+      {
+        path: "/myPostedJobs",
+        element: <MyJobs />,
       },
       {
         path: "/register",
