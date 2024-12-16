@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "../hooks/UseAuth";
+import axios from "axios";
 
 const MyApply = () => {
   const { user } = useAuth();
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/applys?email=${user.email}`)
-      .then((res) => res.json())
-      .then((data) => setJobs(data));
-  }, [user.email]);
+    // fetch(`http://localhost:5000/applys?email=${user.email}`)
+    //   .then((res) => res.json())
+    //   .then((data) => setJobs(data));
+
+    axios
+      .get(`http://localhost:5000/applys?email=${user?.email}`, {
+        withCredentials: true,
+      })
+      .then((res) => console.log(setJobs(res.data)));
+  }, [user?.email]);
   return (
     <div>
       <h1 className="text-2xl font-bold my-4">

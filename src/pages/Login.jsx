@@ -4,9 +4,10 @@ import { AuthContext } from "../provider/AuthProvider";
 import lottie from "../assets/lottie.json";
 import Lottie from "lottie-react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import axios from "axios";
 
 const Login = () => {
-  const { handleGoogleLogin, handleLogin } = useContext(AuthContext);
+  const { handleGoogleLogin, handleLogin, user } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
@@ -21,6 +22,15 @@ const Login = () => {
 
     try {
       await handleLogin(email, password);
+
+      const user = { email: email };
+      const response = await axios.post("http://localhost:5000/jwt", user, {
+        withCredentials: true,
+      });
+
+      // Log the JWT token to the console
+      console.log("JWT Token:", response.data.token);
+
       navigate(from, { replace: true });
     } catch (err) {
       setError(err.message);

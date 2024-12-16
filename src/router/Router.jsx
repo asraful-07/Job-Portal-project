@@ -40,11 +40,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/my-apply",
-        element: (
-          <PrivetRouter>
-            <MyApply />
-          </PrivetRouter>
-        ),
+        element: <MyApply />,
       },
       {
         path: "/add-job",
