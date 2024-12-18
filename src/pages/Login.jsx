@@ -15,6 +15,28 @@ const Login = () => {
 
   const from = location.state?.from || "/";
 
+  // const handleLoginSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const email = e.target.email.value;
+  //   const password = e.target.password.value;
+
+  //   try {
+  //     await handleLogin(email, password);
+
+  //     const user = { email: email };
+  //     const response = await axios.post("http://localhost:5000/jwt", user, {
+  //       withCredentials: true,
+  //     });
+
+  //     // Log the JWT token to the console
+  //     console.log("JWT Token:", response.data.token);
+
+  //     navigate(from, { replace: true });
+  //   } catch (err) {
+  //     setError(err.message);
+  //   }
+  // };
+
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -22,15 +44,6 @@ const Login = () => {
 
     try {
       await handleLogin(email, password);
-
-      const user = { email: email };
-      const response = await axios.post("http://localhost:5000/jwt", user, {
-        withCredentials: true,
-      });
-
-      // Log the JWT token to the console
-      console.log("JWT Token:", response.data.token);
-
       navigate(from, { replace: true });
     } catch (err) {
       setError(err.message);

@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
+import axios from "axios";
 
 // Create the AuthContext
 export const AuthContext = createContext();
@@ -63,13 +64,43 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
+      console.log("state captured", currentUser?.email);
+
+      if (currentUser?.email) {
+        const user = { email: currentUser.email };
+
+        try {
+          const response = await axios.post(
+            "https://job-portal-server-for-recruiter-part3.vercel.app/jwt",
+            user,
+            { withCredentials: true }
+          );
+          console.log("login token", response.data);
+        } catch (error) {
+          console.error("Error fetching login token:", error);
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        try {
+          const response = await axios.post(
+            "https://job-portal-server-for-recruiter-part3.vercel.app/logout",
+            {},
+            { withCredentials: true }
+          );
+          console.log("logout", response.data);
+        } catch (error) {
+          console.error("Error during logout:", error);
+        } finally {
+          setLoading(false);
+        }
+      }
     });
 
     return () => {
-      return unsubscribe();
+      unsubscribe();
     };
   }, []);
 
